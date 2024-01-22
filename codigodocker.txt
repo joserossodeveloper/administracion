@@ -1,0 +1,6 @@
+//codigo que funciona
+docker run -it -v ${PWD}:/var/www/html/ -p 9090:80 php:apache
+
+
+//apache sin php
+docker run -it -v ${PWD}:/usr/local/apache2/htdocs/ -p 9090:80 httpd
