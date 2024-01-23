@@ -1,2 +1,3 @@
 <?php
-echo "HOLA";
+header("Location: /administracion/");
+exit;
