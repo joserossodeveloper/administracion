@@ -1,5 +1,12 @@
-//codigo que funciona
+//codigo que funciona y monta la carpeta en espicifico
 docker run -it -v ${PWD}:/var/www/html/ -p 9090:80 php:apache
+//igual que arriba pero ahora con nombre para no crear duplicados sin fin
+docker run --name administracion -it -v ${PWD}:/var/www/html/ -p 9090:80 php:apache
+//que corra en segundo plano
+docker run -d --name administracion -v ${PWD}:/var/www/html/ -p 9090:80 php:apache
+//reiniciar
+docker run -d -p 9090:80 administracion
+//iniciar start -a nombre_del_contenedor
 
 
 //apache sin php

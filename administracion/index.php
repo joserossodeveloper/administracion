@@ -1,4 +1,9 @@
 <?php
+session_start();
 
-header("Location: /administracion/conexion/");
-exit;
+require_once "global/variables_globales.php";
+
+if (!isset($_SESSION['user'])) {
+    header("Location: /administracion/login.php");
+    exit;
+}
