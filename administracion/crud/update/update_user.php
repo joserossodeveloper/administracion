@@ -1,5 +1,10 @@
 <?php
-echo "lo lograste";
+session_start();
+
+if (!isset($_SESSION['user'])) {
+    header("Location: /administracion/login.php");
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -8,45 +13,63 @@ echo "lo lograste";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/administracion/assets/dist/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/administracion/assets/favicon/sedachimbote-logo.ico">
     <title>Editar Usuario</title>
 </head>
 
 <body>
 
-    <h1>Editar Usuario</h1>
-
-    <form id="editForm">
-        <label for="name">Nombre:</label>
-        <input type="text" id="name" name="name" required><br>
-
-        <label for="father_last_name">Apellido Paterno:</label>
-        <input type="text" id="father_last_name" name="father_last_name" required><br>
-
-        <label for="mother_last_name">Apellido Materno:</label>
-        <input type="text" id="mother_last_name" name="mother_last_name" required><br>
-
-        <label for="birthday">Fecha de Nacimiento:</label>
-        <input type="date" id="birthday" name="birthday" required><br>
-
-        <label for="dni">DNI:</label>
-        <input type="text" id="dni" name="dni" required><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
-
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br>
-
-        <label for="type">Tipo:</label>
-        <input type="text" id="type" name="type" readonly><br>
-
-        <button type="submit">Guardar Cambios</button>
-    </form>
+    <div class="container mt-2 d-flex justify-content-center">
+        <main>
+            <form id="editForm">
+                <div class="mb-2 text-center">
+                    <h5>Editar Usuario</h5>
+                </div>
+                <div class="mb-1">
+                    <label for="name">Nombre:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="row mb-1">
+                    <div class="col">
+                        <label for="father_last_name">Apellido Paterno:</label>
+                        <input type="text" class="form-control" id="father_last_name" name="father_last_name" required>
+                    </div>
+                    <div class="col">
+                        <label for="mother_last_name">Apellido Materno:</label>
+                        <input type="text" class="form-control" id="mother_last_name" name="mother_last_name" required>
+                    </div>
+                </div>
+                <div class="mb-1">
+                    <label for="birthday">Fecha de Nacimiento:</label>
+                    <input type="date" class="form-control" id="birthday" name="birthday" required>
+                </div>
+                <div class="mb-1">
+                    <label for="dni">DNI:</label>
+                    <input type="text" class="form-control" id="dni" name="dni" required>
+                </div>
+                <div class="mb-1">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-1">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-1">
+                    <label for="type">Tipo:</label>
+                    <input type="text" class="form-control" id="type" name="type" readonly>
+                </div>
+                <button type="submit" class="w-100 btn btn-danger mb-1">Guardar Cambios</button>
+                <a class="w-100 btn btn-secondary" href="/administracion/index.php">Cancelar</a>
+            </form>
+        </main>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
     <script>
-        //This config data are fine, I just removed it for the sake of privacy i guess.
+        // Configuración de Firebase (ajusta según tus necesidades)
         var config = {
             apiKey: "AIzaSyAH6XzRQRFowknMC_-QdouFJYtnlzwMMD8",
             authDomain: "puntualo-9ae06.firebaseapp.com",
@@ -56,10 +79,12 @@ echo "lo lograste";
             appId: "1:245683378554:web:cdfddd466bc52f635adec3",
             measurementId: "G-B3DD3TYB9S"
         };
-        // Initialize Firebase
-        var app = firebase.initializeApp(config);
-        // Initialize Cloud Firestore through Firebase
-        const db = firebase.firestore(app);
+
+        // Inicializar Firebase
+        firebase.initializeApp(config);
+        // Inicializar Cloud Firestore through Firebase
+        const db = firebase.firestore();
+
         const urlParams = new URLSearchParams(window.location.search);
         const userId = urlParams.get('id');
 
@@ -78,10 +103,7 @@ echo "lo lograste";
         const typeInput = document.getElementById("type");
 
         // Rellenar los campos del formulario con los datos actuales del usuario
-        // ...
-
-        // Rellenar los campos del formulario con los datos actuales del usuario
-        userRef.get().then(function(doc) {
+        userRef.get().then(function (doc) {
             if (doc.exists) {
                 const userData = doc.data();
                 nameInput.value = userData.name || '';
@@ -90,8 +112,6 @@ echo "lo lograste";
 
                 // Convertir Timestamp a una cadena de fecha legible por input de tipo date
                 birthdayInput.value = userData.birthday ? userData.birthday.toDate().toISOString().split('T')[0] : '';
-                console.log(userData.birthday)
-
                 dniInput.value = userData.dni || '';
                 emailInput.value = userData.email || '';
                 passwordInput.value = userData.password || '';
@@ -99,24 +119,17 @@ echo "lo lograste";
             } else {
                 console.error("No se encontró el usuario con ID: ", userId);
             }
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.error("Error obteniendo datos del usuario: ", error);
         });
 
-        // ...
-
         // Manejar el envío del formulario
-        editForm.addEventListener("submit", function(event) {
+        editForm.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            // Actualizar los campos del usuario con los nuevos 
-            window.alert(birthdayInput.value);
+            // Actualizar los campos del usuario con los nuevos valores
             var fechaString = birthdayInput.value;
             var partesFecha = fechaString.split('-');
-            console.log("Año:", partesFecha[0]);
-            console.log("Mes:", partesFecha[1] - 1);
-            console.log("Día:", partesFecha[2]);
-
             var fecha = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]);
 
             userRef.update({
@@ -128,12 +141,12 @@ echo "lo lograste";
                 email: emailInput.value,
                 password: passwordInput.value,
                 type: typeInput.value
-            }).then(function() {
+            }).then(function () {
                 console.log("Usuario actualizado correctamente");
 
                 // Redirigir a la página deseada después de editar
                 window.location.href = "/administracion/index.php";
-            }).catch(function(error) {
+            }).catch(function (error) {
                 console.error("Error actualizando el usuario: ", error);
             });
         });
