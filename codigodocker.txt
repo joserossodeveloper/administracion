@@ -2,12 +2,11 @@
 docker run -it -v ${PWD}:/var/www/html/ -p 9090:80 php:apache
 //igual que arriba pero ahora con nombre para no crear duplicados sin fin
 docker run --name administracion -it -v ${PWD}:/var/www/html/ -p 9090:80 php:apache
-//que corra en segundo plano
+//que corra en segundo plano y no veas lo que pasa
 docker run -d --name administracion -v ${PWD}:/var/www/html/ -p 9090:80 php:apache
-//reiniciar
-docker run -d -p 9090:80 administracion
-//iniciar start -a nombre_del_contenedor
+//iniciar de nuevo
+start -a nombre_del_contenedor
 
 
-//apache sin php
+//apache sin php no vale
 docker run -it -v ${PWD}:/usr/local/apache2/htdocs/ -p 9090:80 httpd

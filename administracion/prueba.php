@@ -1,9 +1,7 @@
 <?php
-session_start();
-if (isset($_POST["email"])&&isset($_POST["password"])) {
-    $_SESSION["user"]["email"] = $_POST["email"];
-    $_SESSION["user"]["password"] = $_POST["password"];
-    header("Location: index.php");
+
+if (isset($_POST["email"])) {
+    echo "Bien hecho has iniciado sesion ".$_POST["email"];
 	exit;
 }
 
