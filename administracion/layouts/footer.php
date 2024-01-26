@@ -1,8 +1,6 @@
 <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
 <script>
-
-    //This config data are fine, I just removed it for the sake of privacy i guess.
     var config = {
         apiKey: "AIzaSyAH6XzRQRFowknMC_-QdouFJYtnlzwMMD8",
         authDomain: "puntualo-9ae06.firebaseapp.com",
@@ -12,9 +10,9 @@
         appId: "1:245683378554:web:cdfddd466bc52f635adec3",
         measurementId: "G-B3DD3TYB9S"
     };
-    // Initialize Firebase
+    // Inicializar Firebase
     var app = firebase.initializeApp(config);
-    // Initialize Cloud Firestore through Firebase
+    // Inicializar Cloud Firestore a través Firebase
     const db = firebase.firestore(app);
 
     const docRef = db.collection("users");

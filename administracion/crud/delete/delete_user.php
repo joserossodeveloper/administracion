@@ -38,7 +38,7 @@ if (!isset($_SESSION['user'])) {
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
     <script>
-        // Configuración de Firebase (ajusta según tus necesidades)
+        // Configuración de Firebase
         var config = {
             apiKey: "AIzaSyAH6XzRQRFowknMC_-QdouFJYtnlzwMMD8",
             authDomain: "puntualo-9ae06.firebaseapp.com",
@@ -74,9 +74,6 @@ if (!isset($_SESSION['user'])) {
             }
         }
     </script>
-
-    <!-- Puedes agregar más scripts aquí según tus necesidades -->
-
 </body>
 
 </html>

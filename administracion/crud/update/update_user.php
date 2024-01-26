@@ -69,7 +69,7 @@ if (!isset($_SESSION['user'])) {
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
     <script>
-        // Configuración de Firebase (ajusta según tus necesidades)
+        // Configuración de Firebase
         var config = {
             apiKey: "AIzaSyAH6XzRQRFowknMC_-QdouFJYtnlzwMMD8",
             authDomain: "puntualo-9ae06.firebaseapp.com",
@@ -82,7 +82,7 @@ if (!isset($_SESSION['user'])) {
 
         // Inicializar Firebase
         firebase.initializeApp(config);
-        // Inicializar Cloud Firestore through Firebase
+        // Inicializar Cloud Firestore a través Firebase
         const db = firebase.firestore();
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -103,7 +103,7 @@ if (!isset($_SESSION['user'])) {
         const typeInput = document.getElementById("type");
 
         // Rellenar los campos del formulario con los datos actuales del usuario
-        userRef.get().then(function (doc) {
+        userRef.get().then(function(doc) {
             if (doc.exists) {
                 const userData = doc.data();
                 nameInput.value = userData.name || '';
@@ -119,19 +119,19 @@ if (!isset($_SESSION['user'])) {
             } else {
                 console.error("No se encontró el usuario con ID: ", userId);
             }
-        }).catch(function (error) {
+        }).catch(function(error) {
             console.error("Error obteniendo datos del usuario: ", error);
         });
 
         // Manejar el envío del formulario
-        editForm.addEventListener("submit", function (event) {
+        editForm.addEventListener("submit", function(event) {
             event.preventDefault();
 
-            // Actualizar los campos del usuario con los nuevos valores
+
             var fechaString = birthdayInput.value;
             var partesFecha = fechaString.split('-');
             var fecha = new Date(partesFecha[0], partesFecha[1] - 1, partesFecha[2]);
-
+            // Actualizar los campos del usuario con los nuevos valores
             userRef.update({
                 name: nameInput.value,
                 father_last_name: fatherLastNameInput.value,
@@ -141,12 +141,12 @@ if (!isset($_SESSION['user'])) {
                 email: emailInput.value,
                 password: passwordInput.value,
                 type: typeInput.value
-            }).then(function () {
+            }).then(function() {
                 console.log("Usuario actualizado correctamente");
 
                 // Redirigir a la página deseada después de editar
                 window.location.href = "/administracion/index.php";
-            }).catch(function (error) {
+            }).catch(function(error) {
                 console.error("Error actualizando el usuario: ", error);
             });
         });

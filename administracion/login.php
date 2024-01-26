@@ -70,7 +70,6 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["type"])
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
     <script>
-        //This config data are fine, I just removed it for the sake of privacy i guess.
         var config = {
             apiKey: "AIzaSyAH6XzRQRFowknMC_-QdouFJYtnlzwMMD8",
             authDomain: "puntualo-9ae06.firebaseapp.com",
@@ -82,7 +81,7 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["type"])
         };
         // Initialize Firebase
         var app = firebase.initializeApp(config);
-        // Initialize Cloud Firestore through Firebase
+        // Inicializar Cloud Firestore atraves de Firebase
         const db = firebase.firestore(app);
 
         const docRef = db.collection("users");
@@ -104,12 +103,10 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["type"])
                     if (!querySnapshot.empty) {
                         // Si se encontraron documentos, la autenticación es exitosa
                         querySnapshot.forEach(function(doc) {
-                            console.log("Authentication successful!");
-                            console.log("User type: ", doc.data().type);
 
                             const form = document.createElement("form");
                             form.method = "post";
-                            form.action = ""; // Establece la URL correcta de tu página aquí
+                            form.action = "";
 
                             // Agregar campos al formulario
                             const emailInput = document.createElement("input");
@@ -128,14 +125,14 @@ if (isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["type"])
                             const typeInput = document.createElement("input");
                             typeInput.type = "hidden";
                             typeInput.name = "type";
-                            typeInput.value = doc.data().type; // Assuming 'type' is a field in your Firestore document
+                            typeInput.value = doc.data().type;
                             form.appendChild(typeInput);
 
                             // Agregar el campo type al formulario
                             const nameInput = document.createElement("input");
                             nameInput.type = "hidden";
                             nameInput.name = "name";
-                            nameInput.value = doc.data().name; // Assuming 'name' is a field in your Firestore document
+                            nameInput.value = doc.data().name;
                             form.appendChild(nameInput);
 
                             // Agregar el formulario al cuerpo del documento

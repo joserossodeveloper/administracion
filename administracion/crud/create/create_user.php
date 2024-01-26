@@ -75,7 +75,7 @@ if (!isset($_SESSION['user'])) {
         <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.5.2/firebase-firestore.js"></script>
         <script>
-            // Configuración de Firebase (ajusta según tus necesidades)
+            // Configuración de Firebase
             var config = {
                 apiKey: "AIzaSyAH6XzRQRFowknMC_-QdouFJYtnlzwMMD8",
                 authDomain: "puntualo-9ae06.firebaseapp.com",
@@ -88,7 +88,7 @@ if (!isset($_SESSION['user'])) {
 
             // Inicializar Firebase
             firebase.initializeApp(config);
-            // Inicializar Cloud Firestore through Firebase
+            // Inicializar Cloud Firestore a través Firebase
             const db = firebase.firestore();
 
             // Función para crear un nuevo usuario

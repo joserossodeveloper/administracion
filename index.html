@@ -1,44 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu de aplicaciones</title>
 
-  <style>
-    /* Estilos para hacer que los elementos <li> parezcan botones */
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      display: inline-block;
-      margin: 5px;
-      padding: 10px;
-      background-color: #3498db;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    li a {
-      color: #fff;
-      text-decoration: none;
-    }
-  </style>
+  <link rel="stylesheet" href="/administracion/assets/dist/css/bootstrap.min.css">
 </head>
+
 <body>
 
-  <h1>Índice de aplicaciones</h1>
+  <div class="container text-center mt-5">
+    <h1 class="text-dark">Índice de aplicaciones</h1>
 
-  <!-- Lista de aplicaciones con enlaces -->
-  <ul>
-    <!-- Puedes cambiar "nombreDeLaAplicacion.html" con el nombre de tu página -->
-    <li><a href="/administracion/">Administracion</a></li>
-    <!-- Agrega más elementos <li> para más aplicaciones -->
-  </ul>
-
+    <ul class="list-unstyled">
+      <li>
+        <a href="/administracion/" class="btn btn-primary btn-lg">Administracion</a>
+      </li>
+    </ul>
+  </div>
+  <script src="/administracion/assets/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
